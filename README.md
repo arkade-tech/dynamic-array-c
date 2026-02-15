@@ -55,3 +55,27 @@ da_foreach(list, User*, item) {
     free(item);
 }
 da_destroy(list);
+
+
+## Memory Ownership Policy
+
+Since this is a `void*` container, it follows the **Borrower Model**. Understanding the ownership lifecycle is critical to avoiding memory leaks:
+
+1.  **Container Ownership:** The `DynArray` owns the internal `void**` buffer. When you call `da_destroy`, **only** this buffer is freed.
+2.  **User Ownership:** The user (caller) owns the life-cycle of the actual data objects. You must `free()` the items yourself before destroying the array.
+3.  **Transfer on Delete:** When calling `da_delete`, the pointer is returned to you. This transfers ownership back to you to either reuse or `free()` the memory.
+
+## Development & Tooling
+
+The project includes a robust `Makefile` with dependency tracking (`-MMD`) and integrated static analysis to ensure code quality and build reliability.
+
+
+
+| Command | Action | Description |
+| :--- | :--- | :--- |
+| `make` | **Compile** | Builds the binary to `bin/app`. |
+| `make run` | **Execute** | Builds and runs the application immediately. |
+| `make format` | **Style** | Applies `clang-format` to all source and headers. |
+| `make lint` | **Analyze** | Runs `clang-tidy` for deep static analysis. |
+| `make check` | **Workflow** | Full pipeline: Format $\rightarrow$ Lint $\rightarrow$ Build. |
+| `make clean` | **Reset** | Removes all `build/` and `bin/` artifacts. |
