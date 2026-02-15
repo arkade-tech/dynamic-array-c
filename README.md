@@ -1,7 +1,8 @@
 # Generic Dynamic Array (C Vector)
 
-![Build](https://img.shields.io/badge/build-passing-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
+![C](https://img.shields.io/badge/language-C99-blue)
+![Build](https://img.shields.io/badge/build-Makefile-green)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
 A production-ready, **generic (`void*`)** dynamic array implementation for C. It utilizes an **Opaque Pointer** design to ensure strict encapsulation and provides a robust API for data-intensive applications.
 
