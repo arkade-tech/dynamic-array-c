@@ -55,7 +55,7 @@ da_foreach(list, User*, item) {
     free(item);
 }
 da_destroy(list);
-
+```
 
 ## Memory Ownership Policy
 
